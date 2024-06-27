@@ -11,6 +11,9 @@ import com.clinident.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -32,10 +35,22 @@ public class AuthServiceImpl implements AuthService {
             registerResponse.setEmail(user.getEmail());
             registerResponse.setRole(user.getUserRole());
 
-        String jwt = jwtService.generateToken();
+        String jwt = jwtService.generateToken(user,generateExtraClaims(user));
         registerResponse.setJwt(jwt);
 
         return registerResponse;
+    }
+
+    private Map<String, Object> generateExtraClaims(User user) {
+
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("firstname", user.getFirstname());
+        extraClaims.put("lastname", user.getLastname());
+        extraClaims.put("role", user.getUserRole());
+        extraClaims.put("permissions", user.getAuthorities());
+
+        return extraClaims;
+
     }
 
 }
