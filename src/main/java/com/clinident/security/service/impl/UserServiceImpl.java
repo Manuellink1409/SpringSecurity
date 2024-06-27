@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
         User user = User.builder()
                 .email(request.getEmail())
-                .firstname(request.getEmail())
+                .firstname(request.getFirstName())
                 .lastname(request.getLastName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .userRole(UserRole.DOCTOR_ROLE)
@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public User findOneUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(()-> new UserNotFoundException("User not found with email: "+email));
     }
 
     private void validatePassword(RegisterRequest dto) {

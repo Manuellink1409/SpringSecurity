@@ -1,6 +1,7 @@
 package com.clinident.security.service;
 
 import com.clinident.security.persistence.entities.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,4 +44,15 @@ public class JwtService {
 
     }
 
+    public String extractEmail(String jwt) {
+        return extractAllClaims(jwt).getSubject();
+    }
+
+    private Claims extractAllClaims(String jwt) {
+        return Jwts.parserBuilder()
+                .setSigningKey(generateToken())
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody();
+    }
 }

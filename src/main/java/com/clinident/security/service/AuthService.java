@@ -11,4 +11,5 @@ public interface AuthService {
 
     RegisterResponse register(RegisterRequest request);
 
+    boolean validateToken(String jwt);
 }

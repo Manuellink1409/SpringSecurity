@@ -24,8 +24,12 @@ public class HttpSecurityConfig {
                 .sessionManagement(sessMagConfig->sessMagConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(daoAuthProvider)
                 .authorizeHttpRequests(authReqConfig->{
+
                     authReqConfig.requestMatchers(HttpMethod.POST,"/api/v1/auth/**").permitAll();
+                    authReqConfig.requestMatchers(HttpMethod.GET,"/api/v1/auth/validate").permitAll();
                     //authReqConfig.requestMatchers(HttpMethod.POST,"/api/v1/auth/").permitAll();
+                    authReqConfig.anyRequest().authenticated();
+
                 }).build();
     }
 

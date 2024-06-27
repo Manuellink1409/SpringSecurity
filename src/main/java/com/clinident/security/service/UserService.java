@@ -8,4 +8,6 @@ public interface UserService {
     User getUserById(Long id);
 
     User createUser(RegisterRequest request);
+
+    User findOneUserByEmail(String email);
 }
