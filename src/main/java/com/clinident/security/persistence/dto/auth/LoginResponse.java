@@ -1,4 +1,4 @@
-package com.clinident.security.persistence.dto;
+package com.clinident.security.persistence.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

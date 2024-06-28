@@ -1,6 +1,6 @@
 package com.clinident.security.service;
 
-import com.clinident.security.persistence.dto.RegisterRequest;
+import com.clinident.security.persistence.dto.auth.RegisterRequest;
 import com.clinident.security.persistence.entities.User;
 
 public interface UserService {

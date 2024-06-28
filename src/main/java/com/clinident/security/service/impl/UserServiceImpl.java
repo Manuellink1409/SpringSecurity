@@ -2,7 +2,7 @@ package com.clinident.security.service.impl;
 
 import com.clinident.security.exception.InvalidPasswordException;
 import com.clinident.security.exception.UserNotFoundException;
-import com.clinident.security.persistence.dto.RegisterRequest;
+import com.clinident.security.persistence.dto.auth.RegisterRequest;
 import com.clinident.security.persistence.dto.UserRole;
 import com.clinident.security.persistence.entities.User;
 import com.clinident.security.persistence.repositories.UserRepository;
